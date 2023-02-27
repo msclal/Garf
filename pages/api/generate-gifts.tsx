@@ -31,6 +31,7 @@ export default async function handler(
       model: "text-davinci-003",
       prompt: `suggest 3 gift ideas between $${priceMin} and $${priceMax} for a ${age} years old ${gender} that is into ${interests}.`,
       temperature: 0.8,
+      top_p: 0.7,
       max_tokens: 4050,
       frequency_penalty: 1.2,
       presence_penalty: 0,

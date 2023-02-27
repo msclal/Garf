@@ -6,13 +6,12 @@ import gift from "../public/gift.jpeg";
 
 export default function Home() {
   const [giftee, setGiftee] = useState("");
-  const [age, setAge] = useState<number>(20);
-  const [priceMin, setPriceMin] = useState<number>(30);
-  const [priceMax, setPriceMax] = useState<number>(50);
-  const [interests, setInterests] = useState("Star Wars, Cars");
+  const [age, setAge] = useState<number>();
+  const [priceMin, setPriceMin] = useState<number>();
+  const [priceMax, setPriceMax] = useState<number>();
+  const [interests, setInterests] = useState("");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState("");
-  const [hideForm, setHideForm] = useState(false);
 
   async function onSubmit(event: any) {
     event.preventDefault();
@@ -39,7 +38,7 @@ export default function Home() {
         );
       }
 
-      setResult("Garf says..." + data.result.replaceAll("\n", "<br/>"));
+      setResult("Santa Garf says..." + data.result.replaceAll("\n", "<br/>"));
     } catch (error) {
       console.error(error);
       alert(`Having a brainfart 🚽... Give me a moment`);
@@ -59,7 +58,7 @@ export default function Home() {
         {/* <Image src={gift} alt="gift" className="w-[35px]" /> */}
         <p className="text-center text-6xl">💡</p>
         <p className="text-5xl sm:text-6xl text-[#449982] text-center font-bold pb-10">
-          Let&apos;s Brainstorm Gifts
+          Santa Garf
         </p>
         {!loading && (
           <form className="flex flex-col w-96 items-center" onSubmit={onSubmit}>
@@ -73,7 +72,7 @@ export default function Home() {
                 onChange={(e) => setGiftee(e.target.value)}
               >
                 <option value="" selected disabled hidden>
-                  Choose a type of being
+                  Choose a type of living being
                 </option>
                 <option value="man">Man</option>
                 <option value="woman">Woman</option>
