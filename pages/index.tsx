@@ -76,7 +76,7 @@ export default function Home() {
                 onChange={(e) => setGiftee(e.target.value)}
               >
                 <option value="" disabled hidden>
-                  Choose a type of living being
+                  Choose one...
                 </option>
                 <option value="man">Man</option>
                 <option value="woman">Woman</option>
