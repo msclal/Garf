@@ -29,7 +29,7 @@ export default async function handler(
   try {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `suggest 3 gift ideas between $${priceMin} and $${priceMax} for a ${age} years old ${gender} that is into ${interests}.`,
+      prompt: `suggest 3 super unique gift ideas between $${priceMin} and $${priceMax} for a ${age} years old ${gender} that is into ${interests}.`,
       temperature: 0.8,
       top_p: 0.7,
       max_tokens: 4050,

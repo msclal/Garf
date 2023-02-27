@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import load from "../public/load.gif";
-import gift from "../public/gift.jpeg";
+import { useRouter } from "next/router";
 
 export default function Home() {
   const [giftee, setGiftee] = useState("");
@@ -13,12 +13,13 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState("");
 
+  const router = useRouter();
+
   async function onSubmit(event: any) {
     event.preventDefault();
     if (loading) {
       return;
     }
-
     setLoading(true);
     try {
       const response = await fetch("/api/generate-gifts", {
@@ -44,6 +45,10 @@ export default function Home() {
       alert(`Having a brainfart 🚽... Give me a moment`);
     } finally {
       setLoading(false);
+      // router.push({
+      //   pathname: "/results",
+      //   query: { result },
+      // });
     }
   }
 
@@ -55,8 +60,7 @@ export default function Home() {
         <link rel="icon" href="/garf.png" />
       </Head>
       <main className="flex flex-col items-center">
-        {/* <Image src={gift} alt="gift" className="w-[35px]" /> */}
-        <p className="text-center text-6xl">💡</p>
+        \ <p className="text-center text-6xl">💡</p>
         <p className="text-5xl sm:text-6xl text-[#449982] text-center font-bold pb-10">
           Santa Garf
         </p>
