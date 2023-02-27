@@ -32,10 +32,11 @@ export default async function handler(
       prompt: `suggest 3 gift ideas between $${priceMin} and $${priceMax} for a ${age} years old ${gender} that is into ${interests}.`,
       temperature: 0.8,
       max_tokens: 4050,
+      frequency_penalty: 1.2,
+      presence_penalty: 0,
     });
     res.status(200).json({ result: completion.data.choices[0].text });
   } catch (error) {
-    // Consider adjusting the error handling logic for your use case
     if (error.response) {
       console.error(error.response.status, error.response.data);
       res.status(error.response.status).json(error.response.data);
@@ -49,40 +50,3 @@ export default async function handler(
     }
   }
 }
-
-// export default async function (req, res) {
-//   if (!configuration.apiKey) {
-//     res.status(500).json({
-//       error: {
-//         message:
-//           "OpenAI API key not configured, please follow instructions in README.md",
-//       },
-//     });
-//     return;
-//   }
-
-//   const { priceMin, priceMax, gender, age, interests } = req.body;
-
-//   try {
-//     const completion = await openai.createCompletion({
-//       model: "text-davinci-003",
-//       prompt: `suggest 3 gift ideas between $${priceMin} and $${priceMax} for a ${age} years old ${gender} that is into ${interests}.`,
-//       temperature: 0.6,
-//       max_tokens: 4050,
-//     });
-//     res.status(200).json({ result: completion.data.choices[0].text });
-//   } catch (error) {
-//     // Consider adjusting the error handling logic for your use case
-//     if (error.response) {
-//       console.error(error.response.status, error.response.data);
-//       res.status(error.response.status).json(error.response.data);
-//     } else {
-//       console.error(`Error with OpenAI API request: ${error.message}`);
-//       res.status(500).json({
-//         error: {
-//           message: "An error occurred during your request.",
-//         },
-//       });
-//     }
-//   }
-// }
