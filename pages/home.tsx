@@ -9,7 +9,7 @@ export default function Home() {
     },
     {
       title: "Flush",
-      description: "Rewrite sentences when you're feeling iliterrate",
+      description: "Rewrite sentences when you're feeling illiterate",
     },
     {
       title: "Bill",

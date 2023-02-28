@@ -1,3 +1,3 @@
-import Santa from "./santa";
+import Home from "./Home";
 
-export default Santa;
+export default Home;

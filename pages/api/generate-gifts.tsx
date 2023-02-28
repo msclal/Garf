@@ -31,10 +31,10 @@ export default async function handler(
       model: "text-davinci-003",
       prompt: `suggest 3 unique gift ideas between $${priceMin} and $${priceMax} for a ${age} years old ${gender} that is into ${interests}.`,
       temperature: 0.8,
-      top_p: 0.7,
+      // top_p: 0.7,
       max_tokens: 4050,
-      frequency_penalty: 0,
-      presence_penalty: 0,
+      frequency_penalty: 1,
+      presence_penalty: 1,
     });
     res.status(200).json({ result: completion.data.choices[0].text });
   } catch (error) {

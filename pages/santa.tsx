@@ -3,17 +3,16 @@ import Head from "next/head";
 import Image from "next/image";
 import load from "../public/load.gif";
 import { useRouter } from "next/router";
+import Results from "components/Results";
 
 export default function Gifts() {
-  const [giftee, setGiftee] = useState("");
-  const [age, setAge] = useState<number>();
-  const [priceMin, setPriceMin] = useState<number>();
-  const [priceMax, setPriceMax] = useState<number>();
-  const [interests, setInterests] = useState("");
+  const [giftee, setGiftee] = useState("Man");
+  const [age, setAge] = useState<number>(19);
+  const [priceMin, setPriceMin] = useState<number>(10);
+  const [priceMax, setPriceMax] = useState<number>(50);
+  const [interests, setInterests] = useState("porn, video games");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState("");
-
-  const router = useRouter();
 
   async function onSubmit(event: any) {
     event.preventDefault();
@@ -45,10 +44,6 @@ export default function Gifts() {
       alert(`Having a brainfart 🚽... Give me a moment`);
     } finally {
       setLoading(false);
-      // router.push({
-      //   pathname: "/results",
-      //   query: { result },
-      // });
     }
   }
 
@@ -60,7 +55,7 @@ export default function Gifts() {
         <p className="text-5xl sm:text-6xl text-[#449982] text-center font-bold pb-10">
           Santa Garf
         </p>
-        {!loading && (
+        {!loading && !result && (
           <form className="flex flex-col w-96 items-center" onSubmit={onSubmit}>
             <div className="flex flex-col justify-center w-3/4 items-start">
               <label className="text-black mb-1">What is this?</label>
@@ -136,7 +131,7 @@ export default function Gifts() {
             <input
               className="text-white font-medium bg-[#449982] hover:bg-[#f75627] hover:font-semibold mt-4 w-2/4 py-3 px-2 rounded-lg border-2 border-black cursor-pointer"
               type="submit"
-              value="Generate ideas &rarr;"
+              value="Generate ideas"
             />
           </form>
         )}
@@ -146,12 +141,16 @@ export default function Gifts() {
             <p className="text-black mt-5 text-2xl">Garf Garf is thinking...</p>
           </div>
         )}
-        {result && !loading && (
-          <div
-            className="text-black w-1/2  max-w-2/3 mt-10 p-4 bg-slate-100 rounded-2xl border-2 border-black drop-shadow-lg"
-            dangerouslySetInnerHTML={{ __html: result }}
-          />
+        {result && !loading && <Results result={result} />}
+        {result && (
+          <button
+            className="text-black text-2xl hover:font-semibold mt-10"
+            onClick={() => setResult("")}
+          >
+            &larr; Go Back
+          </button>
         )}
+        Hello
       </div>
     </div>
   );
