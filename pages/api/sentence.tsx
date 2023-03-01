@@ -5,17 +5,13 @@ const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-type Data = {
-  input: string;
-};
-
 const openai = new OpenAIApi(configuration);
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { priceMin, priceMax, gender, age, interests } = req.body;
+  const { sentence } = req.body;
 
   if (!configuration.apiKey) {
     res.status(500).json({
@@ -29,10 +25,9 @@ export default async function handler(
   try {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `suggest 3 unique gift ideas between $${priceMin} and $${priceMax} for a ${age} years old ${gender} that is into ${interests}.`,
+      prompt: `rewrite ${sentence}.`,
       temperature: 0.8,
-      // top_p: 0.7,
-      max_tokens: 4050,
+      max_tokens: 4060,
       frequency_penalty: 1,
       presence_penalty: 1,
     });

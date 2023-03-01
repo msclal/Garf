@@ -20,7 +20,7 @@ export default function Gifts() {
     }
     setLoading(true);
     try {
-      const response = await fetch("/api/generate-gifts", {
+      const response = await fetch("/api/gift", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -30,12 +30,12 @@ export default function Gifts() {
 
       const data = await response.json();
       console.log("data", data);
-      if (!response.ok) {
-        throw (
-          data.error ||
-          new Error(`Request failed with status ${response.statusText}`)
-        );
-      }
+      // if (!response.ok) {
+      //   throw (
+      //     data.error ||
+      //     new Error(`Request failed with status ${response.statusText}`)
+      //   );
+      // }
 
       setResult("Santa Garf says..." + data.result.replaceAll("\n", "<br/>"));
     } catch (error) {
@@ -51,7 +51,7 @@ export default function Gifts() {
     <Layout>
       <div className="flex flex-col items-center mt-20 sm:mt-10">
         <p className="text-center text-6xl">💡</p>
-        <p className="text-5xl sm:text-6xl text-[#449982] text-center font-bold pb-10">
+        <p className="text-5xl sm:text-6xl text-[#449982] text-center font-bold md:pb-10">
           Santa Garf
         </p>
         {!loading && !result && (
@@ -90,7 +90,7 @@ export default function Gifts() {
                 onChange={(e) => setAge(Number.parseInt(e.target.value))}
               />
             </div>
-            <div className="flex flex-col justify-center w-3/4 items-start">
+            <div className="fleflex-col justify-center w-3/4 items-start">
               <label className="text-black mb-1">Mininum budget ($)</label>
               <input
                 className="bg-white text-black mb-4 w-full py-3 px-2 border-2 border-amber-900/50 rounded-md"
@@ -143,10 +143,11 @@ export default function Gifts() {
         {result && !loading && <Results result={result} />}
         {result && (
           <button
-            className="text-black text-2xl hover:font-semibold mt-10"
+            // className="text-black text-2xl hover:font-semibold mt-10"
+            className="text-white font-medium bg-[#449982] hover:bg-[#f75627] hover:font-semibold py-3 px-2 rounded-lg border-2 border-amber-900 cursor-pointer w-48"
             onClick={() => setResult("")}
           >
-            &larr; Go Back
+            Generate Again ♻️
           </button>
         )}
         {interests}
