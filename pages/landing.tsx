@@ -20,7 +20,7 @@ export default function Landing() {
     <div className="flex flex-col items-center">
       <p className="text-amber-900 text-7xl sm:text-9xl font-bold">Garf AI</p>
       <div className="flex flex-col md:flex-row flex-wrap justify-evenly items-center w-full mt-20">
-        {cards.map(({ title, description, link }) => (
+        {cards.map(({ title, description }) => (
           <ProjectCard key={title} title={title} description={description} />
         ))}
       </div>
