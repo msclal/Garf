@@ -5,6 +5,7 @@ import load from "../public/load.gif";
 import { useRouter } from "next/router";
 import Results from "components/Results";
 import Link from "next/link";
+import Layout from "@/components/Layout";
 
 export default function Gifts() {
   const [giftee, setGiftee] = useState("Man");
@@ -50,13 +51,14 @@ export default function Gifts() {
 
   console.log(giftee, age, priceMin, priceMax, interests, loading);
   return (
-    <div className="">
-      <Link
-        href="/"
-        className="text-black text-xl sm:text-2xl hover:font-semibold align-baseline absolute top-6 left-5 md:left-10 cursor-pointer"
-      >
-        &larr; Home
-      </Link>
+    // <div className="">
+    //   <Link
+    //     href="/"
+    //     className="text-amber-900 text-xl sm:text-2xl hover:font-semibold align-baseline absolute top-6 left-5 md:left-10 cursor-pointer"
+    //   >
+    //     &larr; Home
+    //   </Link>
+    <Layout>
       <div className="flex flex-col items-center mt-20 sm:mt-10">
         <p className="text-center text-6xl">💡</p>
         <p className="text-5xl sm:text-6xl text-[#449982] text-center font-bold pb-10">
@@ -67,7 +69,7 @@ export default function Gifts() {
             <div className="flex flex-col justify-center w-3/4 items-start">
               <label className="text-black mb-1">What is this?</label>
               <select
-                className="bg-white text-black mb-4 w-full py-3 px-2 border-2 border-black/50 rounded-md"
+                className="bg-white text-black mb-4 w-full py-3 px-2 border-2 border-amber-900/50 rounded-md"
                 name="gender"
                 value={giftee}
                 required
@@ -88,7 +90,7 @@ export default function Gifts() {
             <div className="flex flex-col justify-center w-3/4 items-start">
               <label className="text-black mb-1">Age</label>
               <input
-                className="bg-white text-black mb-4 w-full py-3 px-2 border-2 border-black/50 rounded-md"
+                className="bg-white text-black mb-4 w-full py-3 px-2 border-2 border-amber-900/50 rounded-md"
                 type="number"
                 min={1}
                 max={99}
@@ -101,7 +103,7 @@ export default function Gifts() {
             <div className="flex flex-col justify-center w-3/4 items-start">
               <label className="text-black mb-1">Mininum budget ($)</label>
               <input
-                className="bg-white text-black mb-4 w-full py-3 px-2 border-2 border-black/50 rounded-md"
+                className="bg-white text-black mb-4 w-full py-3 px-2 border-2 border-amber-900/50 rounded-md"
                 type="number"
                 min={1}
                 name="priceMin"
@@ -114,7 +116,7 @@ export default function Gifts() {
             <div className="flex flex-col justify-center w-3/4 items-start">
               <label className="text-black mb-1">Maximum budget ($$)</label>
               <input
-                className="bg-white text-black mb-4 w-full py-3 px-2 border-2 border-black/50 rounded-md"
+                className="bg-white text-black mb-4 w-full py-3 px-2 border-2 border-amber-900/50 rounded-md"
                 type="number"
                 min={1}
                 name="priceMax"
@@ -127,7 +129,7 @@ export default function Gifts() {
             <div className="flex flex-col justify-center w-3/4 items-start">
               <label className="text-black mb-1">Interests</label>
               <input
-                className="bg-white text-black mb-4 w-full py-3 px-2 border-2 border-black/50 rounded-md"
+                className="bg-white text-black mb-4 w-full py-3 px-2 border-2 border-amber-900/50 rounded-md"
                 type="text"
                 name="interests"
                 placeholder="eg: Rock Climbing, Boxing, Kareoke"
@@ -136,7 +138,7 @@ export default function Gifts() {
               />
             </div>
             <input
-              className="text-white font-medium bg-[#449982] hover:bg-[#f75627] hover:font-semibold mt-4 w-2/4 py-3 px-2 rounded-lg border-2 border-black cursor-pointer"
+              className="text-white font-medium bg-[#449982] hover:bg-[#f75627] hover:font-semibold mt-4 w-2/4 py-3 px-2 rounded-lg border-2 border-amber-900 cursor-pointer"
               type="submit"
               value="Generate ideas"
             />
@@ -159,6 +161,6 @@ export default function Gifts() {
         )}
         {interests}
       </div>
-    </div>
+    </Layout>
   );
 }

@@ -1,13 +1,15 @@
 import React from "react";
+import Back from "@/components/Back";
 
 interface Props {
   children: React.ReactNode | React.ReactNode[];
 }
 
-export function Layout({ children }: Props) {
+export default function Layout({ children }: Props) {
   return (
-    <main className="bg-white flex flex-col justify-center items-center w-full min-h-screen">
+    <div className="bg-white flex flex-col justify-center items-center w-full min-h-screen">
+      <Back />
       {children}
-    </main>
+    </div>
   );
 }

@@ -4,8 +4,8 @@ import { Layout } from "@/components/Layout";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />;
-    </Layout>
+    <main className="bg-white flex flex-col justify-center items-center w-full min-h-screen">
+      <Component {...pageProps} />;{/* </Layout> */}
+    </main>
   );
 }
