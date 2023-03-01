@@ -1,6 +1,5 @@
 import React from "react";
 import Layout from "@/components/Layout";
-import Back from "@/components/Back";
 export default function Custom404() {
   return (
     <Layout>

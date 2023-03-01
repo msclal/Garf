@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-import Head from "next/head";
 import Image from "next/image";
 import load from "../public/load.gif";
-import { useRouter } from "next/router";
 import Results from "components/Results";
-import Link from "next/link";
 import Layout from "@/components/Layout";
 
 export default function Gifts() {
@@ -51,13 +48,6 @@ export default function Gifts() {
 
   console.log(giftee, age, priceMin, priceMax, interests, loading);
   return (
-    // <div className="">
-    //   <Link
-    //     href="/"
-    //     className="text-amber-900 text-xl sm:text-2xl hover:font-semibold align-baseline absolute top-6 left-5 md:left-10 cursor-pointer"
-    //   >
-    //     &larr; Home
-    //   </Link>
     <Layout>
       <div className="flex flex-col items-center mt-20 sm:mt-10">
         <p className="text-center text-6xl">💡</p>
