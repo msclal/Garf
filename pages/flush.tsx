@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Layout from "@/components/Layout";
 import Results from "@/components/Results";
+import styles from "../styles/loading-dots.module.css";
 
 export default function Flush() {
   const [sentence, setSentence] = useState(
@@ -27,12 +28,6 @@ export default function Flush() {
       const data = await response.json();
       console.log("data", data);
 
-      //   if (!response.ok) {
-      //     throw (
-      //       data.error ||
-      //       new Error(`Request failed with status ${response.statusText}`)
-      //     );
-      //   }
       setResult("Garfunkle says..." + data.result.replaceAll("\n", "<br/>"));
     } catch (error) {
       console.error(error);
@@ -49,7 +44,7 @@ export default function Flush() {
         Flusher
       </p>
       <p className="text-black mb-4">Write the 💩 sentence</p>
-      <div className="w-full lg:w-1/3 px-5">
+      <div className="w-full lg:w-1/3 px-5 flex flex-col justify-center items-center">
         <textarea
           className="bg-white w-full text-black mb-4 py-3 px-2 border-2 resize-none"
           rows={2}
@@ -59,14 +54,18 @@ export default function Flush() {
           onChange={(e) => setSentence(e.target.value)}
         ></textarea>
         <button
-          className="font-medium w-full py-3 px-2  bg-amber-900 text-white  rounded-lg border-2 hover:text-black hover:border-amber-900 hover:font-semibold hover:bg-blue-300"
+          className="font-medium w-full py-3 px-2 mb-10 bg-amber-900 text-white  rounded-lg border-2 hover:text-black hover:border-amber-900 hover:font-semibold hover:bg-blue-300"
           onClick={onSubmit}
         >
           Literate Me! 🫧
         </button>
+
+        {loading && <span className={styles.dot}>current page</span>}
+        {result && !loading && <Results result={result} />}
         {/* <p className="text-black text-4xl">{result}</p> */}
       </div>
-      {result && !loading && <Results result={result} />}
+      {/* <div className=""> */}
+      {/* </div> */}
     </Layout>
   );
 }

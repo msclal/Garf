@@ -25,7 +25,7 @@ export default async function handler(
   try {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `rewrite ${sentence}.`,
+      prompt: `rewrite the text \"${sentence}.\"`,
       temperature: 0.8,
       max_tokens: 4060,
       frequency_penalty: 1,

@@ -4,19 +4,20 @@ import Link from "next/link";
 interface Props {
   title: string;
   description: string;
+  color: string;
 }
 
-export const ProjectCard = ({ title, description }: Props) => {
+export const ProjectCard = ({ title, description, color }: Props) => {
   return (
     <Link
       href={`${title.toLocaleLowerCase()}`}
-      className="flex flex-col border-2 items-center border-amber-900 md:py-10 w-64 md:w-1/4 my-3 rounded-xl cursor-pointer hover:bg-green-100 p-4"
+      className={`flex flex-col border-2 items-center border-black md:py-10 w-64 md:w-1/4 my-3 rounded-xl cursor-pointer hover:border-amber-900 hover:bg-${color}-100 p-4`}
     >
       {/* <div className="flex flex-col border-2 items-center border-amber-900 py-16 w-full md:w-1/4 my-3 rounded-xl cursor-pointer hover:bg-green-100"> */}
       <p className="text-amber-900 font-semibold text-3xl text-center">
         {title}
       </p>
-      <p className="text-amber-900 text-xl text-center">{description}</p>
+      <p className="text-black text-xl text-center">{description}</p>
       {/* </div> */}
     </Link>
   );

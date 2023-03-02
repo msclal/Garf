@@ -30,12 +30,6 @@ export default function Gifts() {
 
       const data = await response.json();
       console.log("data", data);
-      // if (!response.ok) {
-      //   throw (
-      //     data.error ||
-      //     new Error(`Request failed with status ${response.statusText}`)
-      //   );
-      // }
 
       setResult("Santa Garf says..." + data.result.replaceAll("\n", "<br/>"));
     } catch (error) {
@@ -51,7 +45,7 @@ export default function Gifts() {
     <Layout>
       <div className="flex flex-col items-center mt-20 sm:mt-10">
         <p className="text-center text-6xl">💡</p>
-        <p className="text-5xl sm:text-6xl text-[#449982] text-center font-bold md:pb-10">
+        <p className="text-5xl sm:text-6xl text-[#449982] text-center font-bold mb-8 md:mb-0 md:pb-10">
           Santa Garf
         </p>
         {!loading && !result && (
@@ -140,14 +134,16 @@ export default function Gifts() {
             <p className="text-black mt-5 text-2xl">Garf Garf is thinking...</p>
           </div>
         )}
-        {result && !loading && <Results result={result} />}
+        <div className="flex justify-center items-center mx-10">
+          {result && !loading && <Results result={result} />}
+        </div>
         {result && (
           <button
             // className="text-black text-2xl hover:font-semibold mt-10"
-            className="text-white font-medium bg-[#449982] hover:bg-[#f75627] hover:font-semibold py-3 px-2 rounded-lg border-2 border-amber-900 cursor-pointer w-48"
+            className="text-white font-medium bg-[#449982] hover:bg-[#f75627] hover:font-semibold py-3 px-2 rounded-lg border-2 mt-10 border-amber-900 cursor-pointer w-48"
             onClick={() => setResult("")}
           >
-            Generate Again ♻️
+            Generate Again
           </button>
         )}
         {interests}
