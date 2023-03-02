@@ -53,13 +53,13 @@ export default function Gifts() {
             <div className="flex flex-col justify-center w-3/4 items-start">
               <label className="text-black mb-1">What is this?</label>
               <select
-                className="bg-white text-black mb-4 w-full py-3 px-2 border-2 border-amber-900/50 rounded-md"
+                className="bg-white text-black mb-4 w-full py-3 px-2 border-2 border-black/50 rounded-md"
                 name="gender"
                 value={giftee}
                 required
                 onChange={(e) => setGiftee(e.target.value)}
               >
-                <option value="" disabled hidden>
+                <option value="" selected disabled>
                   Choose one...
                 </option>
                 <option value="man">Man</option>
@@ -74,7 +74,7 @@ export default function Gifts() {
             <div className="flex flex-col justify-center w-3/4 items-start">
               <label className="text-black mb-1">Age</label>
               <input
-                className="bg-white text-black mb-4 w-full py-3 px-2 border-2 border-amber-900/50 rounded-md"
+                className="bg-white text-black mb-4 w-full py-3 px-2 border-2 border-black/50 rounded-md"
                 type="number"
                 min={1}
                 max={99}
@@ -87,7 +87,7 @@ export default function Gifts() {
             <div className="fleflex-col justify-center w-3/4 items-start">
               <label className="text-black mb-1">Mininum budget ($)</label>
               <input
-                className="bg-white text-black mb-4 w-full py-3 px-2 border-2 border-amber-900/50 rounded-md"
+                className="bg-white text-black mb-4 w-full py-3 px-2 border-2 border-black/50 rounded-md"
                 type="number"
                 min={1}
                 name="priceMin"
@@ -100,7 +100,7 @@ export default function Gifts() {
             <div className="flex flex-col justify-center w-3/4 items-start">
               <label className="text-black mb-1">Maximum budget ($$)</label>
               <input
-                className="bg-white text-black mb-4 w-full py-3 px-2 border-2 border-amber-900/50 rounded-md"
+                className="bg-white text-black mb-4 w-full py-3 px-2 border-2 border-black/50 rounded-md"
                 type="number"
                 min={1}
                 name="priceMax"
@@ -113,7 +113,7 @@ export default function Gifts() {
             <div className="flex flex-col justify-center w-3/4 items-start">
               <label className="text-black mb-1">Interests</label>
               <input
-                className="bg-white text-black mb-4 w-full py-3 px-2 border-2 border-amber-900/50 rounded-md"
+                className="bg-white text-black mb-4 w-full py-3 px-2 border-2 border-black/50 rounded-md"
                 type="text"
                 name="interests"
                 placeholder="eg: Rock Climbing, Boxing, Kareoke"
@@ -122,7 +122,7 @@ export default function Gifts() {
               />
             </div>
             <input
-              className="text-white font-medium bg-[#449982] hover:bg-[#f75627] hover:font-semibold mt-4 w-2/4 py-3 px-2 rounded-lg border-2 border-amber-900 cursor-pointer"
+              className="text-white font-medium bg-[#449982] hover:bg-[#f75627] hover:font-semibold mt-4 w-2/4 py-3 px-2 rounded-lg border-2 border-black/50 cursor-pointer"
               type="submit"
               value="Generate ideas"
             />
@@ -131,16 +131,18 @@ export default function Gifts() {
         {loading && (
           <div className="flex flex-col items-center">
             <Image src={load} alt="loading" className="m-0" />
-            <p className="text-black mt-5 text-2xl">Garf Garf is thinking...</p>
+            <p className="text-black mt-10 text-2xl">
+              Garf Garf is thinking...
+            </p>
           </div>
         )}
-        <div className="flex justify-center items-center mx-10">
+        <div className="flex justify-center items-center mx-10 w-1/3">
           {result && !loading && <Results result={result} />}
         </div>
         {result && (
           <button
             // className="text-black text-2xl hover:font-semibold mt-10"
-            className="text-white font-medium bg-[#449982] hover:bg-[#f75627] hover:font-semibold py-3 px-2 rounded-lg border-2 mt-10 border-amber-900 cursor-pointer w-48"
+            className="text-white font-medium bg-[#449982] hover:bg-[#f75627] hover:font-semibold py-3 px-2 rounded-lg border-2 mt-10 border-black cursor-pointer w-48"
             onClick={() => setResult("")}
           >
             Generate Again

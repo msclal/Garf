@@ -11,9 +11,9 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { sentence, style } = req.body;
+  const { sentence, language } = req.body;
 
-  console.log(sentence, style);
+  console.log(sentence, language);
 
   if (!configuration.apiKey) {
     res.status(500).json({
@@ -27,11 +27,12 @@ export default async function handler(
   try {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: generatePrompt({ sentence, style }),
-      temperature: 1,
-      max_tokens: 4000,
-      frequency_penalty: 0,
-      // presence_penalty: 1,
+      prompt: `Translate "${sentence}" into a romanization of ${language}`,
+      temperature: 0.3,
+      max_tokens: 100,
+      top_p: 1.0,
+      frequency_penalty: 0.0,
+      presence_penalty: 0.0,
     });
     res.status(200).json({ result: completion.data.choices[0].text });
   } catch (error) {
@@ -46,23 +47,5 @@ export default async function handler(
         },
       });
     }
-  }
-}
-
-interface Props {
-  sentence: string;
-  style: string;
-}
-
-function generatePrompt({ sentence, style }: Props) {
-  if (style === "biblical") {
-    const x = `I want you to act as an biblical translator. Replace my simplified A0-level words and sentences with more beautiful and elegant, biblical words but in very short sentences. Keep the meaning same. I want you to only reply the correction, the improvements and nothing else, do not write explanations. My sentence is "${sentence}"
-    `;
-    console.log(x);
-    return x;
-  } else {
-    const x = `rewrite the text "${sentence}" in ${style} writing style`;
-    console.log(x);
-    return x;
   }
 }

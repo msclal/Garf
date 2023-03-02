@@ -9,17 +9,17 @@ export default function Landing() {
     {
       title: "Santa",
       description: "Suggest gift ideas for that special someone",
-      color: "green",
+      color: "hover:bg-green-100",
     },
     {
       title: "Flush",
       description: "Rewrite sentences when you're feeling illiterate",
-      color: "blue",
+      color: "hover:bg-blue-100",
     },
     {
-      title: "Bill",
-      description: "Calculate the bill split with the homies",
-      color: "green",
+      title: "Translator",
+      description: "Speak in tongues and be one with the people",
+      color: "hover:bg-green-100",
     },
   ];
   return (
