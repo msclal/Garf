@@ -14,7 +14,7 @@ export default function Landing() {
     {
       title: "Bill",
       description: "Calculate bill split with the girls and gals",
-      color: "hover:bg-green-100",
+      color: "hover:bg-red-100",
     },
     {
       title: "Flusher",

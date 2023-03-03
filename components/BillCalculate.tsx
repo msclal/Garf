@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 
 interface Props {
   state: {
@@ -12,47 +12,44 @@ interface Props {
 
 export default function BillForm({ state }: Props) {
   const { split, bill, tax, tipPercent, numPeople } = state;
-  const totalBill = bill! + tax!;
-  const tip = Number(((totalBill * tipPercent!) / 100).toFixed(2));
-  let costPerPerson = "0";
+
+  const totalBill = Number((Number(bill!) + Number(tax!)).toFixed(2));
+  const tip = tipPercent
+    ? Number(((totalBill * Number(tipPercent!)) / 100).toFixed(2))
+    : 0;
+
+  let costPerPerson = "$0";
 
   if (split === "even") {
-    costPerPerson = "$" + ((totalBill + tip!) / numPeople!).toFixed(2);
+    costPerPerson = "$" + Number(((totalBill + tip!) / numPeople!).toFixed(2));
   } else {
-    costPerPerson = "Meal + $" + ((tip + tax!) / numPeople!).toFixed(2);
+    costPerPerson = "Meal + $" + Number(((tip + tax!) / numPeople!).toFixed(2));
   }
-  console.log(costPerPerson);
+  console.log(typeof costPerPerson, costPerPerson);
   return (
     <div className="mx-4">
       <div className="flex justify-around mb-8">
         <div className="flex flex-col items-center">
           <p className="text-black">Total Bill</p>
-          <p className="text-black text-3xl">${totalBill || 0}</p>
+          <p className="text-black text-3xl">
+            ${totalBill || (bill || tax ? bill || tax : 0)}
+          </p>
         </div>
         <div className="flex flex-col items-center">
           <p className="text-black">Total Tip</p>
           <p className="text-black text-3xl">${tip || 0}</p>
         </div>
       </div>
-      <div className="flex flex-col items-center rounded-md">
+      <div className="flex flex-col items-center rounded-md border-4 border-t-black border-slate-100 bg-slate-100 drop-shadow-lg">
         <p className="font-bold text-red-700">Total Cost Per Person</p>
-        <p className="text-3xl font-bold text-red-700">
-          {costPerPerson || "0"}
+        <p className="text-3xl font-bold text-red-700 ">
+          {costPerPerson.includes("$Infinity") ||
+          costPerPerson.includes("$NaN") ||
+          costPerPerson.includes("$undefined")
+            ? "$0"
+            : costPerPerson}
         </p>
       </div>
     </div>
   );
-}
-
-{
-  /* <div>
-        <p className="label">Total Tip</p>{" "}
-        <p className="result">{`$ ${totalTip}`}</p>
-      </div>
-      <div>
-        <p className="label">Tip per Person</p>{" "}
-        <p className="result">{`$ ${Number(totalTip / noOfPerson).toFixed(
-          2
-        )}`}</p>
-      </div> */
 }

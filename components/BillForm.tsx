@@ -25,30 +25,30 @@ export default function BillForm({ state, onUpdateState }: Props) {
       </p>
       <div className="mx-4">
         <p className="text-black mb-1">Select split method</p>
-        <div className="flex mb-4">
+        <div className="flex mb-4 text-2xl justify-center">
           <div className="flex items-center mr-36">
             <input
               type="radio"
               name="split"
               value={split}
-              className="focus:shadow-none hover:cursor-pointer"
+              // checked={true}
+              className="text-blue-900 text-2xl hover:cursor-pointer"
               onChange={() => onUpdateState({ split: "even" })}
             />
-            <label className="text-black mx-1">Even</label>
+            <label className="text-black mx-2">Even</label>
           </div>
           <div className="flex items-center">
             <input
               type="radio"
               name="split"
               value={split}
-              className="focus:shadow-none  hover:cursor-pointer"
+              className="text-blue-900 text-2xl hover:cursor-pointer"
               onChange={() => onUpdateState({ split: "uneven" })}
             />
-            <label className="text-black mx-1">Uneven</label>
+            <label className="text-black mx-2 text-2xl">Uneven</label>
           </div>
         </div>
         <div className="flex">
-          {/* <div className="flex mb-8 bg-red-500 justify-evenly items-center"> */}
           <div className="flex flex-col">
             <p className="text-black mb-1">Base Bill Total ($)</p>
             <input
@@ -59,7 +59,12 @@ export default function BillForm({ state, onUpdateState }: Props) {
               className="bg-white text-black mb-4 w-11/12 py-3 px-2 border-2 border-black/50 rounded-md"
               onChange={(e) => {
                 onUpdateState({
-                  bill: Number.parseInt(e.target.value),
+                  // bill: parseFloat(e.target.value),
+                  bill: Number(
+                    (
+                      Math.floor(parseFloat(e.target.value) * 100) / 100
+                    ).toFixed(2)
+                  ),
                 });
               }}
             />
@@ -74,7 +79,12 @@ export default function BillForm({ state, onUpdateState }: Props) {
               className="bg-white text-black mb-4 w-11/12 py-3 px-2 border-2 border-black/50 rounded-md"
               onChange={(e) => {
                 onUpdateState({
-                  tax: Number.parseInt(e.target.value),
+                  // tax: parseFloat(e.target.value),
+                  tax: Number(
+                    (
+                      Math.floor(parseFloat(e.target.value) * 100) / 100
+                    ).toFixed(2)
+                  ),
                 });
               }}
             />
@@ -86,7 +96,7 @@ export default function BillForm({ state, onUpdateState }: Props) {
             return (
               <div
                 className={`text-black text-2xl border-2 border-black hover:bg-slate-100 rounded-md cursor-pointer w-fit p-3 ${
-                  tipPercent == p ? `bg-slate-300` : ``
+                  tipPercent === p ? `bg-slate-200` : ``
                 }`}
                 onClick={() => {
                   onUpdateState({ tipPercent: p });
@@ -96,15 +106,19 @@ export default function BillForm({ state, onUpdateState }: Props) {
             );
           })}
           <input
-            className="bg-white text-black text-2xl border-2 border-black w-fit p-3 rounded-md m"
+            className={`text-black text-2xl border-2 border-black hover:bg-slate-100 rounded-md cursor-pointer w-fit p-3 
+            ${
+              tipPercent !== 10 && tipPercent !== 15 && tipPercent !== 20
+                ? `bg-slate-200`
+                : `bg-white`
+            }
+            `}
             onChange={(e) => {
+              const p = Number(
+                (Math.floor(parseFloat(e.target.value) * 100) / 100).toFixed(2)
+              );
               onUpdateState({
-                tipPercent:
-                  Number.parseInt(e.target.value) < 0
-                    ? 0
-                    : Number.parseInt(e.target.value) > 100
-                    ? 100
-                    : Number.parseInt(e.target.value),
+                tipPercent: p < 0 ? 0 : p > 100 ? 100 : p,
               });
             }}
             value={tipPercent}
@@ -123,8 +137,11 @@ export default function BillForm({ state, onUpdateState }: Props) {
             required
             className="bg-white text-black mb-8 w-1/2 py-3 px-2 border-2 border-black/50 rounded-md"
             onChange={(e) => {
+              const ppl = Number(
+                Math.floor(parseFloat(e.target.value) * 100) / 100
+              ).toFixed(0);
               onUpdateState({
-                numPeople: Number.parseInt(e.target.value),
+                numPeople: ppl,
               });
             }}
           />
