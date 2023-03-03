@@ -59,7 +59,6 @@ export default function BillForm({ state, onUpdateState }: Props) {
               className="bg-white text-black mb-4 w-11/12 py-3 px-2 border-2 border-black/50 rounded-md"
               onChange={(e) => {
                 onUpdateState({
-                  // bill: parseFloat(e.target.value),
                   bill: Number(
                     (
                       Math.floor(parseFloat(e.target.value) * 100) / 100

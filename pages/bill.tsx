@@ -4,7 +4,7 @@ import BillCalculate from "@/components/BillCalculate";
 
 export default function Bill() {
   const [state, setState] = useState({
-    split: "",
+    split: "even",
     bill: undefined,
     tax: undefined,
     tipPercent: undefined,
