@@ -7,7 +7,7 @@ interface Props {
 
 export default function Layout({ children }: Props) {
   return (
-    <div className="bg-white flex flex-col justify-center items-center w-full min-h-screen">
+    <div className="bg-white flex flex-col justify-center items-center w-full min-h-fit">
       <Back />
       {children}
     </div>

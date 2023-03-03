@@ -27,7 +27,7 @@ export default async function handler(
   try {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `Translate "${sentence}" into a romanization of ${language}`,
+      prompt: `Translate "${sentence}" into ${language}`,
       temperature: 0.3,
       max_tokens: 100,
       top_p: 1.0,

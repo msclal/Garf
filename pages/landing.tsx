@@ -6,13 +6,18 @@ import Image from "next/image";
 
 export default function Landing() {
   const cards = [
+    // {
+    //   title: "Santa",
+    //   description: "Suggest gift ideas for that special someone",
+    //   color: "hover:bg-green-100",
+    // },
     {
-      title: "Santa",
-      description: "Suggest gift ideas for that special someone",
+      title: "Bill",
+      description: "Calculate bill split with the girls and gals",
       color: "hover:bg-green-100",
     },
     {
-      title: "Flush",
+      title: "Flusher",
       description: "Rewrite sentences when you're feeling illiterate",
       color: "hover:bg-blue-100",
     },
