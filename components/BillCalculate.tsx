@@ -48,7 +48,7 @@ export default function BillForm({ state }: Props) {
         </div>
         <div className="flex flex-col items-center">
           <p className="text-black">Total Tip</p>
-          <p className="text-black text-3xl">${tip || 0}</p>
+          <p className="text-black text-3xl">${tip}</p>
         </div>
       </div>
       <div className="flex flex-col items-center rounded-md border-4 border-t-black border-slate-100 bg-slate-100 drop-shadow-lg">

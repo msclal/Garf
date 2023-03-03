@@ -114,9 +114,7 @@ export default function BillForm({ state, onUpdateState }: Props) {
             }
             `}
             onChange={(e) => {
-              const p = Number(
-                (Math.floor(parseFloat(e.target.value) * 100) / 100).toFixed(2)
-              );
+              const p = parseFloat(e.target.value);
               onUpdateState({
                 tipPercent: p < 0 ? 0 : p > 100 ? 100 : p,
               });
