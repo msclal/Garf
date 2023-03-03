@@ -13,9 +13,22 @@ interface Props {
 export default function BillForm({ state }: Props) {
   const { split, bill, tax, tipPercent, numPeople } = state;
 
-  const totalBill = Number((Number(bill!) + Number(tax!)).toFixed(2));
+  //   const totalBill = Number((Number(bill!) + Number(tax!)).toFixed(2));
+  //   const totalBill = Number((Math.floor((bill! + tax!) * 100) / 100).toFixed(2));
+
+  const totalBill =
+    bill && tax
+      ? Number((Math.floor((bill! + tax!) * 100) / 100).toFixed(2))
+      : bill || tax
+      ? Number((Math.floor(bill! * 100) / 100).toFixed(2))! ||
+        Number((Math.floor(tax! * 100) / 100).toFixed(2))!
+      : 0;
   const tip = tipPercent
-    ? Number(((totalBill * Number(tipPercent!)) / 100).toFixed(2))
+    ? Number(
+        (
+          Math.floor(((totalBill * Number(tipPercent!)) / 100) * 100) / 100
+        ).toFixed(2)
+      )
     : 0;
 
   let costPerPerson = "$0";
@@ -31,9 +44,7 @@ export default function BillForm({ state }: Props) {
       <div className="flex justify-around mb-8">
         <div className="flex flex-col items-center">
           <p className="text-black">Total Bill</p>
-          <p className="text-black text-3xl">
-            ${totalBill || (bill || tax ? bill || tax : 0)}
-          </p>
+          <p className="text-black text-3xl">${totalBill}</p>
         </div>
         <div className="flex flex-col items-center">
           <p className="text-black">Total Tip</p>

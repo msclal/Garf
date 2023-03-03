@@ -59,11 +59,12 @@ export default function BillForm({ state, onUpdateState }: Props) {
               className="bg-white text-black mb-4 w-11/12 py-3 px-2 border-2 border-black/50 rounded-md"
               onChange={(e) => {
                 onUpdateState({
-                  bill: Number(
-                    (
-                      Math.floor(parseFloat(e.target.value) * 100) / 100
-                    ).toFixed(2)
-                  ),
+                  bill: parseFloat(e.target.value),
+                  // bill: Number(
+                  //   (
+                  //     Math.floor(parseFloat(e.target.value) * 100) / 100
+                  //   ).toFixed(2)
+                  // ),
                 });
               }}
             />
@@ -78,12 +79,12 @@ export default function BillForm({ state, onUpdateState }: Props) {
               className="bg-white text-black mb-4 w-11/12 py-3 px-2 border-2 border-black/50 rounded-md"
               onChange={(e) => {
                 onUpdateState({
-                  // tax: parseFloat(e.target.value),
-                  tax: Number(
-                    (
-                      Math.floor(parseFloat(e.target.value) * 100) / 100
-                    ).toFixed(2)
-                  ),
+                  tax: parseFloat(e.target.value),
+                  // tax: Number(
+                  //   (
+                  //     Math.floor(parseFloat(e.target.value) * 100) / 100
+                  //   ).toFixed(2)
+                  // ),
                 });
               }}
             />
