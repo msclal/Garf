@@ -5,19 +5,19 @@ import BillCalculate from "@/components/BillCalculate";
 export default function Bill() {
   const [state, setState] = useState({
     split: "even",
-    bill: undefined,
-    tax: undefined,
-    tipPercent: undefined,
-    numPeople: undefined,
+    bill: null,
+    tax: null,
+    tipPercent: null,
+    numPeople: null,
   });
 
-  console.log(
-    state.split,
-    state.bill,
-    state.tax,
-    state.tipPercent,
-    state.numPeople
-  );
+  //   console.log(
+  //     state.split,
+  //     state.bill,
+  //     state.tax,
+  //     state.tipPercent,
+  //     state.numPeople
+  //   );
 
   const onUpdateState = (newState: object) => {
     setState({
