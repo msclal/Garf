@@ -9,6 +9,7 @@ export default function Stats() {
   const [wordsPerSentence, setWordsPerSentence] = useState<number[]>([]);
   const [passiveCount, setPassiveCount] = useState<boolean[]>([]);
   const [pastCount, setPastCount] = useState<boolean[]>([]);
+  const [showModal, setShowModal] = React.useState(false);
 
   const cleanup = () => {
     let t = text.replace(/(^\s*)|(\s*$)/gi, "");
@@ -80,6 +81,80 @@ export default function Stats() {
   console.log("active", pastCount);
   return (
     <Layout>
+      {/* <> */}
+      <div className="flex w-full justify-end mr-20">
+        <button
+          className="font-medium py-3 px-2 my-10 bg-blue-600 text-white rounded-lg border-2 hover:text-black hover:border-black hover:font-semibold hover:bg-red-400"
+          type="button"
+          onClick={() => setShowModal(true)}
+        >
+          Help
+        </button>
+      </div>
+      {showModal ? (
+        <>
+          <div className="justify-center items-center sm:top-40 flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+            <div className="relative w-auto my-6 mx-auto max-w-3xl">
+              {/*content*/}
+              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                {/*header*/}
+                <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+                  <h3 className="text-3xl font-semibold">Modal Title</h3>
+                  <button
+                    className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                    onClick={() => setShowModal(false)}
+                  >
+                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                      ×
+                    </span>
+                  </button>
+                </div>
+                {/*body*/}
+                <div className="relative p-6 flex-auto w-full">
+                  <p className="my-4 text-slate-500 text-lg leading-relaxed">
+                    - Best to analyze one paragraph at a time
+                  </p>
+                  <p className="my-4 text-slate-500 text-lg leading-relaxed">
+                    - Sets a flag when there are more than 5 sentences, word
+                    count is over 25, passive voice or past/future tense is
+                    detected
+                  </p>
+                  <p className="my-4 text-slate-500 text-lg leading-relaxed">
+                    - Passive voice triggers when using
+                    [am|is|are|was|were|be|been|being] + verb ending in -ed or
+                    -en
+                  </p>
+                  <p className="my-4 text-slate-500 text-lg leading-relaxed">
+                    - Past/Future tense triggers when commonly used past/future
+                    tense verbs are found: had, been, was, were, will, could,
+                    would, became, bought, came, did, grew, went, led, knew,
+                    saw, thought. (More coming soon!)
+                  </p>
+                </div>
+                {/*footer*/}
+                <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                  <button
+                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none hover:text-slate-400 mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={() => setShowModal(false)}
+                  >
+                    Close
+                  </button>
+                  {/* <button
+                    className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={() => setShowModal(false)}
+                  >
+                    Save Changes
+                  </button> */}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+        </>
+      ) : null}
+
       <div className="flex justify-evenly items-center w-full flex-wrap px-10 lg:px-20">
         {/* <div className="flex flex-col justify-center items-center">
           <p className="text-6xl">🚽</p>
@@ -127,7 +202,7 @@ export default function Stats() {
               className="font-medium w-full py-3 px-2 mb-10 bg-blue-600 text-white  rounded-lg border-2 hover:text-black hover:border-red-900 hover:font-semibold hover:bg-red-400"
               onClick={handleSubmit}
             >
-              Check My Stats
+              Analyze
             </button>
           </div>
         </div>
