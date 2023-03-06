@@ -50,8 +50,8 @@ export default function Stats() {
 
   const isPassive = () => {
     const passiveRegex =
-      /\b((be(en)?)|(w(as|ere))|(is)|(a(er|m)))(.+(en|ed))([\s]|\.)/g;
-    // /(\b(am|is|are|was|were|be|been|being)\b\s+[\w\s]*\b(\w+ed)\b)/i;
+      // /\b((be(en)?)|(w(as|ere))|(is)|(a(er|m)))(.+(en|ed))([\s]|\.)/g;
+      /(\b(am|is|are|was|were|be|been|being|will)\b\s+[\w\s]*\b(\w+ed|\w+en)\b)/i;
     const sentences = text.toLowerCase().split(/[.?!]/).slice(0, -1);
     const passive = sentences.map((sentence) => passiveRegex.test(sentence));
     setPassiveCount(passive);
