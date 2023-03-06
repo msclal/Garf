@@ -56,13 +56,11 @@ interface Props {
 
 function generatePrompt({ sentence, style }: Props) {
   if (style === "biblical") {
-    const x = `I want you to act as an biblical translator. Replace my simplified A0-level words and sentences with more beautiful and elegant, biblical words but in very short sentences. Keep the meaning same. I want you to only reply the correction, the improvements and nothing else, do not write explanations. My sentence is "${sentence}"
+    return `I want you to act as an biblical translator. Replace my simplified A0-level words and sentences with more beautiful and elegant, biblical words but in very short sentences. Keep the meaning same. I want you to only reply the correction, the improvements and nothing else, do not write explanations. My sentence is "${sentence}"
     `;
-    console.log(x);
-    return x;
+  } else if (style == "articulate") {
+    return `I am not fluent in English. I'm having trouble forming sentences. I want you to be my fluent english translator than can transform my choppy words into an articulated, colloquial sentence that does not use complex words. Do not include any other explanations in your answer. Only give me the transformed sentence in your answer. My request is for you to form a sentence with the words "cars, so loud, they should ban, it hurts my hears".`;
   } else {
-    const x = `rewrite the text "${sentence}" in ${style} writing style`;
-    console.log(x);
-    return x;
+    return `rewrite the text "${sentence}" in ${style} writing style`;
   }
 }

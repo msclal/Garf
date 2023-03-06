@@ -17,10 +17,15 @@ export default function Landing() {
       color: "hover:bg-red-100",
     },
     {
-      title: "Flusher",
-      description: "Rewrite sentences when you're feeling illiterate",
+      title: "Stats",
+      description: "Check your sentence stats",
       color: "hover:bg-blue-100",
     },
+    // {
+    //   title: "Flusher",
+    //   description: "Rewrite sentences when you're feeling illiterate",
+    //   color: "hover:bg-blue-100",
+    // },
     {
       title: "Translator",
       description: "Speak in tongues and be one with the people",

@@ -4,7 +4,7 @@ import Results from "@/components/Results";
 import styles from "../styles/loading-dots.module.css";
 
 export default function Translate() {
-  const [sentence, setSentence] = useState("Hello World!");
+  const [sentence, setSentence] = useState("");
   const [language, setLanguage] = useState("");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState("");
@@ -59,7 +59,7 @@ export default function Translate() {
           required
           onChange={(e) => setLanguage(e.target.value)}
         >
-          <option value="" selected disabled>
+          <option value="" defaultValue={""} disabled>
             Select language to translate into...
           </option>
           <option value="spanish">🇲🇽 Spanish</option>
@@ -67,13 +67,14 @@ export default function Translate() {
           <option value="french">🇫🇷 French</option>
           <option value="tagalog">🇵🇭 Tagalog</option>
           <option value="korean">🇰🇷 Korean</option>
+          <option value="urdu">🇮🇳 Hindi</option>
           <option value="urdu">🇮🇳 Urdu</option>
         </select>
         <button
           className="font-medium w-full py-3 px-2 mb-10 bg-blue-900 text-white  rounded-lg border-2 hover:text-white hover:border-blue-900 hover:font-semibold hover:bg-green-600"
           onClick={onSubmit}
         >
-          Literate Me! 🫧
+          Make me literate! 💬
         </button>
 
         {loading && <span className={styles.dot}>hi</span>}

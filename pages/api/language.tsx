@@ -27,7 +27,8 @@ export default async function handler(
   try {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `Translate "${sentence}" into ${language}`,
+      prompt: `I am a foreigner and I want you to be my translator. Translate "${sentence}" into ${language}. if some of the words are not a direct translation, do not tell me that they do not have a direct translation. only give me the translated text in your answer. If the translated language does not use romanized language, then also provide the phonetic pronunciation.`,
+      // prompt: `Translate "${sentence}" into ${language}. If the translated language does not use the English alphabet, then also provide the phonetic`,
       temperature: 0.3,
       max_tokens: 100,
       top_p: 1.0,
@@ -48,4 +49,20 @@ export default async function handler(
       });
     }
   }
+}
+
+interface Props {
+  sentence: string;
+  language: string;
+}
+
+function generatePrompt({ sentence, language }: Props) {
+  return `I am a foreigner and I want you to be my translator. if some of the words are not a direct translation, do not tell me that they do not have a direct translation. only give me the translated text in your answer. Translate the text using the translated language's alphabet characters. Do not romanize the translation. If the translated language does not use romanized language, then also provide the phonetic pronunciation. 
+  
+  sentence: I need a blanket
+  language: Tagalog
+  translation: "Kailangan ko ng kumot (Kah-i-la-ngan koh nang ku-mot)"
+  
+  Now Translate "${sentence}" into ${language}.
+  `;
 }

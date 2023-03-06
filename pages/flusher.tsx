@@ -4,7 +4,7 @@ import Results from "@/components/Results";
 import styles from "../styles/loading-dots.module.css";
 
 export default function Flusher() {
-  const [sentence, setSentence] = useState("Hello World!");
+  const [sentence, setSentence] = useState("");
   const [style, setStyle] = useState("");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState("");
@@ -66,12 +66,15 @@ export default function Flusher() {
           <option value="professional">Profesional</option>
           <option value="biblical">Biblical</option>
           <option value="gay slang">Colloquial</option>
+          <option value="articulae">
+            I am fully illiterate. Just articulate this.
+          </option>
         </select>
         <button
           className="font-medium w-full py-3 px-2 mb-10 bg-amber-900 text-white  rounded-lg border-2 hover:text-black hover:border-amber-900 hover:font-semibold hover:bg-blue-300"
           onClick={onSubmit}
         >
-          Literate Me! 🫧
+          Make me literate! 🧼
         </button>
 
         {loading && <span className={styles.dot}>current page</span>}
