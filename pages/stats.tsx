@@ -51,15 +51,21 @@ export default function Stats() {
 
   const isPassive = () => {
     const passiveRegex =
-      // /\b((be(en)?)|(w(as|ere))|(is)|(a(er|m)))(.+(en|ed))([\s]|\.)/g;
-      /(\b(am|is|are|was|were|be|been|being|will)\b\s+[\w\s]*\b(\w+ed|\w+en)\b)/i;
+      /(\b(?:be|am|is|are|was|were|have|has|had)\b[\w\s]{0,15}?(?:d|(?!whe)n|ne|left|being)\b(?: by\b)?)/i;
+    // /\b((be(en)?)|(w(as|ere))|(is)|(a(er|m)))(.+(en|ed))([\s]|\.)/g;
+    // /(\b(am|is|are|was|were|be|been|being|will)\b\s+[\w\s]*\b(\w+ed|\w+en)\b)/i;
+    // /(\b(am|is|are|was|were|be|been|being|will))(.+(en|ed))([\s]|\.)/g;
     const sentences = text.toLowerCase().split(/[.?!]/).slice(0, -1);
-    const passive = sentences.map((sentence) => passiveRegex.test(sentence));
+    console.log("sentences", sentences);
+    const passive = sentences.map((sentence) =>
+      passiveRegex.test(sentence.trim())
+    );
+    console.log(passive);
     setPassiveCount(passive);
   };
   const isPresent = () => {
     const notActiveWords =
-      /\b(had|been|was|were|will|could|would|became|bought|came|did|grew|went|led|knew|saw|thought)\b/gi;
+      /\b(had|been|was|were|will|could|would|became|bought|came|did|grew|went|led|knew|saw|thought)\b/i;
     const sentences = text.toLowerCase().split(/[.?!]/).slice(0, -1);
     const present = sentences.map((sentence) => notActiveWords.test(sentence));
     setPastCount(present);
@@ -74,11 +80,6 @@ export default function Stats() {
     isPresent();
     // console.log(t);
   };
-  console.log(text);
-  console.log("sentence", sentencesCount);
-  console.log("word", wordsPerSentence);
-  console.log("passive", passiveCount);
-  console.log("active", pastCount);
   return (
     <Layout>
       {/* <> */}
@@ -93,7 +94,7 @@ export default function Stats() {
       </div>
       {showModal ? (
         <>
-          <div className="justify-center items-center sm:top-40 flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+          <div className="justify-center items-center sm:top-16 flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
               {/*content*/}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
@@ -112,23 +113,29 @@ export default function Stats() {
                 {/*body*/}
                 <div className="relative p-6 flex-auto w-full">
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
-                    - Best to analyze one paragraph at a time
+                    - Best to analyze one paragraph at a time.
                   </p>
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
                     - Sets a flag when there are more than 5 sentences, word
                     count is over 25, passive voice or past/future tense is
-                    detected
+                    detected.
                   </p>
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
                     - Passive voice triggers when using
-                    [am|is|are|was|were|be|been|being] + verb ending in -ed or
-                    -en
+                    [am|is|are|was|were|be|been|being] + verb ending in [-ed |
+                    -en]. This algorithm is a bit elementary/imperfect but
+                    should (~most of the time) detect basic kinds of passive.
                   </p>
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
                     - Past/Future tense triggers when commonly used past/future
                     tense verbs are found: had, been, was, were, will, could,
                     would, became, bought, came, did, grew, went, led, knew,
                     saw, thought. (More coming soon!)
+                  </p>
+                  <p className="my-4 text-slate-500 font-semibold text-lg leading-relaxed">
+                    - Note: Bonni and Sharon seem to allow passive sentences. It
+                    is hard to talk about past events without following a
+                    sentence format like bullet #3 anyways.
                   </p>
                 </div>
                 {/*footer*/}
