@@ -51,7 +51,7 @@ export default function Stats() {
 
   const isPassive = () => {
     const passiveRegex =
-      /(\b(?:be|am|is|are|was|were|have|has|had)\b[\w\s]{0,15}?(?:d|(?!whe)n|ne|left|being)\b(?: by\b)?)/i;
+      /(\b(?:be|am|is|are|was|were|have|has|had|been)\b[\w\s]{0,15}?(?:d|(?!whe)n|ne|left|being)\b(?: by\b)?)/i;
     // /\b((be(en)?)|(w(as|ere))|(is)|(a(er|m)))(.+(en|ed))([\s]|\.)/g;
     // /(\b(am|is|are|was|were|be|been|being|will)\b\s+[\w\s]*\b(\w+ed|\w+en)\b)/i;
     // /(\b(am|is|are|was|were|be|been|being|will))(.+(en|ed))([\s]|\.)/g;
@@ -64,10 +64,14 @@ export default function Stats() {
     setPassiveCount(passive);
   };
   const isPresent = () => {
-    const notActiveWords =
-      /\b(had|been|was|were|will|could|would|became|bought|came|did|grew|went|led|knew|saw|thought)\b/i;
+    const notPresentWords =
+      //   /\b(had|been|was|were|will|could|would|shouldn't|should|couldn't|could|wouldn't|would|became|bought|came|did|grew|went|led|knew|saw|thought)\b/i;
+      /\b(had|been|was|were|will|could|would|should|became|did|went|knew|saw|thought|couldn't|couldnt|wouldn't|wouldnt|shouldn't|shouldnt)\b/i;
+    // // const allowedPast =
+    // //   /(\b(?:is|has|have|being|be|am|are)\b[\w\s]{0,15}?(?:d|(?!whe)n|ne|left|being)\b(?: by\b)?)/i;
+    // const allowedPast = /(?<!is|has|have|being|be|am|are)\b\w+(en|ed)\b/i;
     const sentences = text.toLowerCase().split(/[.?!]/).slice(0, -1);
-    const present = sentences.map((sentence) => notActiveWords.test(sentence));
+    const present = sentences.map((sentence) => notPresentWords.test(sentence));
     setPastCount(present);
   };
 
@@ -113,7 +117,7 @@ export default function Stats() {
                 {/*body*/}
                 <div className="relative p-6 flex-auto w-full">
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
-                    - Best to analyze one paragraph at a time.
+                    - Best use case: analyze one paragraph at a time.
                   </p>
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
                     - Sets a flag when there are more than 5 sentences, word
@@ -127,15 +131,16 @@ export default function Stats() {
                     should (~most of the time) detect basic kinds of passive.
                   </p>
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
-                    - Past/Future tense triggers when commonly used past/future
-                    tense verbs are found: had, been, was, were, will, could,
-                    would, became, bought, came, did, grew, went, led, knew,
-                    saw, thought. (More coming soon!)
+                    - Past/Future tense strictly only triggers for common
+                    non-present verbs: had, been, was, were, will, could, would,
+                    became, knew, saw, thought. Not basing it off of words
+                    ending in -ed or -en because they can be made present (eg. I
+                    have eaten - present).
                   </p>
                   <p className="my-4 text-slate-500 font-semibold text-lg leading-relaxed">
-                    - Note: Bonni and Sharon seem to allow passive sentences. It
-                    is hard to talk about past events without following a
-                    sentence format like bullet #3 anyways.
+                    - Note: They seem to allow passive sentences. It is hard to
+                    talk about past events without following a sentence format
+                    like bullet #3 anyways.
                   </p>
                 </div>
                 {/*footer*/}
