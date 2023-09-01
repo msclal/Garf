@@ -3,6 +3,7 @@ import { ProjectCard } from "components/ProjectCard";
 import Heinz from "../public/heinz.svg";
 import Sauces from "../public/sauces1.svg";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Landing() {
   const cards = [
@@ -12,12 +13,12 @@ export default function Landing() {
     //   color: "hover:bg-green-100",
     // },
     {
-      title: "Bill",
+      title: "BILL",
       description: "Calculate bill split with the girls and gals",
       color: "hover:bg-red-100",
     },
     {
-      title: "Stats",
+      title: "STATS",
       description: "Check your ENGR180w sentence stats",
       color: "hover:bg-blue-100",
     },
@@ -44,7 +45,7 @@ export default function Landing() {
       <p className="text-amber-900 text-7xl sm:text-9xl font-bold relative z-10">
         GarfAI
       </p>
-      <p className="text-black text-xl sm:text-2xl relative z-10">
+      <p className="text-black sm:text-xl relative z-10 ">
         Streamlining the College Workflow
       </p>
       <div className="z-3 flex flex-col md:flex-row flex-wrap justify-evenly items-center w-full mt-5 sm:mt-10">
@@ -57,6 +58,14 @@ export default function Landing() {
           />
         ))}
       </div>
+      <Link
+        href={"https://github.com/msclal"}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-gray-500 absolute bottom-10 text-xs underline cursor-pointer sm:hover:text-gray-400 duration-300"
+      >
+        Follow Mika on Github
+      </Link>
     </div>
   );
 }
