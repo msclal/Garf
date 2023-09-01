@@ -18,7 +18,7 @@ export default function Landing() {
     },
     {
       title: "Stats",
-      description: "Check your sentence stats",
+      description: "Check your ENGR180w sentence stats",
       color: "hover:bg-blue-100",
     },
     // {
@@ -26,21 +26,28 @@ export default function Landing() {
     //   description: "Rewrite sentences when you're feeling illiterate",
     //   color: "hover:bg-blue-100",
     // },
-    {
-      title: "Translator",
-      description: "Speak in tongues and be one with the people",
-      color: "hover:bg-green-100",
-    },
+    // {
+    //   title: "Translator",
+    //   description: "Speak in tongues and be one with the people",
+    //   color: "hover:bg-green-100",
+    // },
   ];
   return (
     <div className="flex flex-col items-center">
       <Image
         src={Heinz}
         alt="heinz"
-        className="absolute hidden 2xl:block top-0 right-0 z-0"
+        priority
+        draggable={false}
+        className="absolute max-xl:hidden top-0 right-0 z-0 w-[30rem]"
       />
-      <p className="text-amber-900 text-7xl sm:text-9xl font-bold">Garf AI</p>
-      <div className="z-3 flex flex-col md:flex-row flex-wrap justify-evenly items-center w-full mt-5 sm:mt-20">
+      <p className="text-amber-900 text-7xl sm:text-9xl font-bold relative z-10">
+        GarfAI
+      </p>
+      <p className="text-black text-xl sm:text-2xl relative z-10">
+        Streamlining the College Workflow
+      </p>
+      <div className="z-3 flex flex-col md:flex-row flex-wrap justify-evenly items-center w-full mt-5 sm:mt-10">
         {cards.map(({ title, description, color }) => (
           <ProjectCard
             key={title}
